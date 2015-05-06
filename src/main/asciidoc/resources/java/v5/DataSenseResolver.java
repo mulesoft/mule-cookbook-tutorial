@@ -63,4 +63,16 @@ public class DataSenseResolver {
         return metaData;
     }
 
+
+    @Inject
+    private CookbookConnector connector;
+
+    
+    public CookbookConnector getConnector() {
+        return connector;
+    }
+
+    public void setConnector(CookbookConnector connector) {
+        this.connector = connector;
+    }
 }

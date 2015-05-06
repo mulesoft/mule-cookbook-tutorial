@@ -7,7 +7,7 @@ package org.mule.modules.cookbook;
 
 import java.util.List;
 
-import org.mule.api.annotations.Config;
+import org.mule.api.annotations.ConnectionStrategy;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.Processor;
 import org.mule.modules.cookbook.config.ConnectorConfig;
@@ -22,7 +22,7 @@ import com.cookbook.tutorial.service.Recipe;
 @Connector(name = "cookbook", friendlyName = "Cookbook")
 public class CookbookConnector {
 
-    @Config
+    @ConnectionStrategy
     ConnectorConfig config;
 
     /**

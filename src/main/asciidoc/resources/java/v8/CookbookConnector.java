@@ -8,7 +8,7 @@ package org.mule.modules.cookbook;
 import java.util.List;
 import java.util.Map;
 
-import org.mule.api.annotations.Config;
+import org.mule.api.annotations.ConnectionStrategy;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.MetaDataScope;
 import org.mule.api.annotations.Paged;
@@ -49,7 +49,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @MetaDataScope(DataSenseResolver.class)
 public class CookbookConnector {
 
-    @Config
+    @ConnectionStrategy
     ConnectorConfig config;
 
     /**
