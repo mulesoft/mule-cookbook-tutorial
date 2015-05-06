@@ -7958,7 +7958,7 @@ mvn install eclipse:eclipse</code></pre>
 <p>The behavior you expose to users, using the @Connector annotation.</p>
 </li>
 <li>
-<p>Code related to the connection/configuration is injected into your @Config annotated field. There are several types of configuration you can use as we will see in this tutorial.</p>
+<p>Code related to the connection/configuration is injected into your @ConnectionStrategy annotated field. There are several types of configuration you can use as we will see in this tutorial.</p>
 </li>
 </ul>
 </div>
@@ -7970,7 +7970,7 @@ mvn install eclipse:eclipse</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>When you mark a field with @Config, DevKit ensures that you have an initialized object set when the Mule app runs and that requests are made to your connector.</p>
+<p>When you mark a field with @ConnectionStrategy, DevKit ensures that you have an initialized object set when the Mule app runs and that requests are made to your connector.</p>
 </div>
 </td>
 </tr>
@@ -9409,20 +9409,6 @@ To correctly debug your code, take into account that the Mule app you are runnin
 </div>
 <div class="title">Figure 2: View configuration and XML</div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>@ConnectionStrategy annotation is deprecated. Users instead should use @Config. On this views, consider the ConnectionStrategy as the ConnectorConfig</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect2">
 <h3 id="configurable">Configurable and Parameter Modifiers</h3>
@@ -10212,7 +10198,7 @@ Response response = invocationBuilder.get();                                    
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-05-06 17:23:20 ART
+Last updated 2015-05-06 18:32:16 ART
 </div>
 </div>
 </body>
