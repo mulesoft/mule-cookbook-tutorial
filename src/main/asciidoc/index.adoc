@@ -66,11 +66,11 @@ When consuming a service, you may need to configure different values to establis
 To solve this, DevKit provides a pair of annotations that let you modularize in different classes:
 
 * The behavior you expose to users, using the @Connector annotation.
-* Code related to the connection/configuration is injected into your @Config annotated field. There are several types of configuration you can use as we will see in this tutorial.
+* Code related to the connection/configuration is injected into your @ConnectionStrategy annotated field. There are several types of configuration you can use as we will see in this tutorial.
 
 [TIP]
 ====
-When you mark a field with @Config, DevKit ensures that you have an initialized object set when the Mule app runs and that requests are made to your connector.
+When you mark a field with @ConnectionStrategy, DevKit ensures that you have an initialized object set when the Mule app runs and that requests are made to your connector.
 ====
 
 ==== Adding Dependencies
@@ -188,11 +188,6 @@ In this example, you can check how the code matches to XML and other UI elements
 // TODO: Use 2 images of screenshots with the default layout
 
 image::split-2-high.png[caption="Figure 2: ", title="View configuration and XML", alt="Image2", width="800", link="images/split-2-high.png"]
-
-[NOTE]
-====
-@ConnectionStrategy annotation is deprecated. Users instead should use @Config. On this views, consider the ConnectionStrategy as the ConnectorConfig
-====
 
 include::configurables.adoc[]
 
