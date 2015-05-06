@@ -7,7 +7,7 @@ package org.mule.modules.cookbook;
 
 import java.util.List;
 
-import org.mule.api.annotations.Config;
+import org.mule.api.annotations.ConnectionStrategy;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.MetaDataScope;
 import org.mule.api.annotations.Processor;
@@ -36,7 +36,7 @@ import com.cookbook.tutorial.service.SessionExpiredException;
 @MetaDataScope(DataSenseResolver.class)
 public class CookbookConnector {
 
-    @Config
+    @ConnectionStrategy
     ConnectorConfig config;
 
     /**
