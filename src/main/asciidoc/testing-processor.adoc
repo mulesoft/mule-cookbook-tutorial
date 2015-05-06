@@ -1,0 +1,23 @@
+=== Testing your @Processor
+
+To test your @Processor:
+
+. Generate the required files to test the operation, as if it was being used inside a Mule application.
+. Right click the root of your project and click *Anypoint Connector* > *Generate Tests*.
+. Select the operation you want to use to generate the test, and all the files you want to create.
+. After the generation ends, modify the test to make the corresponding setup and assertions.
++
+image::generate-tests1.png[width="600"]
++
+. Start the server, and run your test now.
++
+It's all green!
++
+image::generate-tests2.png[width="600"]
+
+So, what just happened?
+
+* We ran a Mule app that contained one simple flow with the XML that represents our operation.
+* A connector instance was created and using our configuration, connected to the server.
+* The operation executed and the payload now is the result of that operation.
+* We retrieved the payload, cast it to what we know the result is, and started making the relevant assertions.

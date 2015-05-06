@@ -1,0 +1,46 @@
+== Prerequisites
+
+To develop a connector you should have a working knowledge of Mule, Anypoint Studio, and Java development in general, specifically the use of https://docs.oracle.com/javase/tutorial/java/annotations/basics.html[Java annotations].
+
+DevKit's functionality is to expose to connector developers  http://docs.oracle.com/javase/tutorial/java/annotations/[Java annotations] that generate code and files to interact with Mule, and Anypoint Studio. The generated code provides the interface between the connector and Mule that would otherwise require each connector developer to include extensive boilerplate code, as well as the code and files required to interact with your connector in Anypoint Studio.
+
+You can develop a connector using Windows, Mac, or Linux.
+
+== Set Up Your Environment
+
+. Download and install http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html[Java 1.7 JDK].
+. Download and install http://maven.apache.org/download.cgi[Maven]. If you're new to Maven, read http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html[Maven in 5 Minutes].
+. Download http://www.mulesoft.com/platform/mule-studio[Anypoint Studio].
+. Check http://www.mulesoft.org/documentation/display/current/Maven+Support+in+Anypoint+Studio[Maven configuration] in Anypoint Studio.
+. Install http://www.mulesoft.org/documentation/display/current/Setting+Up+Your+Dev+Environment#SettingUpYourDevEnvironment-DevKitPlugin[Anypoint DevKit plugin].
+. Install a http://git-scm.com/downloads[GitHub] client.
++
+[WARNING]
+====
+JRE is not suited for development, you need to have a JDK installed.
+====
+
+For information on setup and DevKit, see
+http://www.mulesoft.org/documentation/display/current/Setting+Up+Your+Dev+Environment[Setting up Your Dev Environment] and  http://www.mulesoft.org/documentation/display/current/Anypoint+Connector+DevKit[Anypoint Connector DevKit].
+
+== Import the Cookbook
+
+To import the cookbook tutorial from Git:
+
+. Clone https://github.com/mulesoft/mule-cookbook[tutorial] repository into your local machine. For example, to clone to a *dev* folder, run:
++
+[source,bash]
+----
+cd ~/dev
+git clone https://github.com/mulesoft/mule-cookbook.git
+----
++
+. In the cloned directory, run:
++
+[source,bash]
+----
+cd ~/dev/mule-cookbook
+mvn install eclipse:eclipse
+----
++
+. When done, in Anypoint Studio, import the root project as an existing project with the *File* > *Import* > *General* > *Existing Projects into Workspace* commands.

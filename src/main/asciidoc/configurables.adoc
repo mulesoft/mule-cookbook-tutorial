@@ -1,0 +1,63 @@
+[[configurable]]
+=== Configurable and Parameter Modifiers
+
+==== @Optional Parameters
+
+Optional parameters or configurable ones are elements that are not required, and therefore, there is no need for users to specify a value.
+
+You can specify configurable fields inside an @Connector or connection strategies classes, or as parameters of @Processor methods inside a @Connector.
+
+[source,java]
+----
+import org.mule.api.annotations.Configurable;
+import org.mule.api.annotations.Processor;
+import org.mule.api.annotations.param.Optional;
+
+//Inside the @Connector class
+
+/**
+ * Optional Field documentation
+ */
+@Configurable
+@Optional
+private String  optionalField;
+//Getter and Setter of the field are required
+
+/**
+ * Optional parameter
+ */
+@Processor
+public String sayHi(String firstName,@Optional String lastName ) {
+    return "Hi "+firstName+" "+((lastName==null) ? "":lastName);
+}
+----
+
+==== @Default
+
+When you want an optional parameter or configurable you can avoid the use of @Optional and just use the @Default annotation.
+[source,java]
+----
+import org.mule.api.annotations.Configurable;
+import org.mule.api.annotations.Processor;
+import org.mule.api.annotations.param.Default;
+
+//Inside the @Connector class
+
+/**
+ *  Field with Default
+ */
+@Configurable
+@Default("Hi")
+private String  greeting;
+//Getter and Setter of the field are required
+
+/**
+ * Default parameter
+ */
+@Processor
+public String sayHi(String firstName,@Default("Unknown") String lastName ) {
+    return greeting+" "+firstName+" "+lastName;
+}
+----
+
+Another very important use of the @Default annotation is when building a connector that has DataSense.

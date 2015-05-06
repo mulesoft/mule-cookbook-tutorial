@@ -1,0 +1,86 @@
+== Documenting Your Connector
+
+MuleSoft recommends that you use the following format to document your connector:
+
+_NameOf Connector_
+
+One sentence description of what this connector is for.
+
+*Contents:*
+
+_List Table of Contents_
+
+
+==== Introduction
+Description and concepts.
+
+==== Overview of the system
+
+-	High level description how the connector is providing the connectivity.
+- Describe access method: SOAP/REST/JDK
+-	Description of the main concepts of the system.
+- Integration with other MuleSoft capabilities
+
+==== Prerequisites
+- List any knowledge requirements for someone to create a Mule project using this flow.
+- List any authentication requirements for someone to access the resource that the connector communicates with.
+
+===== Requirements
+Hardware, software, and technical requirements.
+
+===== Dependencies
+- What MuleSoft software is required to get this connector to work?
+- What other software is required for this connector to run?
+- What system versions is supported ?. Patches/APIs versions
+- What versions of JAR files and MuleSoft software is required  ?
+- What version of your sandbox are you using during the testing ?
+- What software is required to user this connector?
+
+==== Installing and Configuring
+- How do you install this connector?
+- What do you set on configuration?
+
+===== Updating From an Older Version
+What needs to be configured when updating from a previous version of this connector?
+Are there configuration items for previous MuleSoft software for this connector?
+
+==== Using This Connector
+Outbound, inbound, streaming outbound
+
+==== Use Cases
+List use cases for this connector
+
+==== Use Case Examples
+For each use case, list a full Java example and a MuleSoft flow with UI screenshots. Explain each field and list the default value, minimum value, maximum value, and all possible values for a field. Provide example values and explain each.
+
+Explain what this example does.
+
+Explain the steps for how to configure using the Anypoint Studio visual editor and how to configure using the Studio XML editor.
+
+List the full XML flow.
+
+==== Integration Patterns
+___ recognizes these integration patterns for connecting with other systems…
+
+==== Adding to a Flow
+Use a ____ Connector in your application -> flowchart
+
+==== Query Types
+If talking to a database, what queries are allowed by this connector?
+
+==== Best Practices
+To take full advantage of the functionality, do this ...
+
+==== Tips
+-	<Information from Support>
+
+==== Increasing Performance
+What can you set in the connector to increase performance?
+
+==== Rate Limits
+
+(If any) - Explain any limits that occur when a production connector runs.
+
+==== See Also
+
+List any documentation required to use the connector

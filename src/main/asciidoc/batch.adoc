@@ -1,0 +1,15 @@
+== Adding Batch
+
+=== What is Batch?
+
+TODO
+
+=== Implementing Batch in a Connector
+
+TODO
+
+Add batch to the operations that handle list of elements.
+
+=== Testing Batch
+
+TODO

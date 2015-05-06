@@ -1,0 +1,64 @@
+
+[[processor]]
+=== Adding @Processor Methods
+
+. Remove the dummy operation the connector has.
++
+. To add a processor simply type *proc* at the editor and use Ctrl+Space to display the templates and pick the simple processor.
++
+image::processor1.png[width="600"]
++
+. Change it to reflect the +getRecentlyAdded+ method signature, and there we have our first connector, ready to be tested.
++
+image::processor2.png[width="600"]
++
+. Run the http://www.mulesoft.org/documentation/display/current/Creating+an+Anypoint+Connector+Project#CreatinganAnypointConnectorProject-MoreDevKitActions[Generate Sources] Action.
++
+See full link:{resourcesDir}/java/v1/CookbookConnector.java[Connector] source code.
+
+At this point you can <<install-guide,install>> this Connector and try it in Studio if you want.
+
+[IMPORTANT]
+====
+As you modify your connector, you may start seeing error markers on the generated folder.
+
+Just ignore them.
+
+Once you regenerate the sources, the errors will go away as the generated code will be refreshed.
+====
+
+==== Adding Samples to Your Connector
+
+Let's now add the example for it.
+
+Create the file pointed by the *{@sample ...}* if it doesn't exists already
+
+*Note*: When you add an example, use the same name as the name that narrows the example in the file. Inside of it you have to put an example of the @Processor.
+
+If you have the Javadoc check enabled, DevKit plugin marks the missing example as an error and provide a quick fix for us to easily add the example.
+
+Otherwise, open the file and type *<* at the editor and use Ctrl+Space to display the templates and pick the one that best suite our operation.
+
+image::sample1.png[width="600"]
+
+Our example in this case looks like this:
+
+[source,xml,indent=0]
+----
+<!-- BEGIN_INCLUDE(cook-book:getRecentlyAdded) -->
+	<cook-book:get-recently-added/>
+<!-- END_INCLUDE(cook-book:getRecentlyAdded) -->
+----
+
+include::using-my-connector.adoc[]
+
+// TODO IGNORE TESTING SECTION FOR NOW
+// include::testing-processor.adoc[]
+
+If you want to know how to create tests for your connector check:
+
+* Adding http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#functional_tests_automation[Functional Tests Automation].
+
+* http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_generating_functional_tests[Generating Functional Tests].
+
+* The full http://www.mulesoft.org/documentation/display/current/Developing+DevKit+Connector+Tests[testing documentation].

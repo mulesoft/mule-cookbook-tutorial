@@ -1,0 +1,116 @@
+=== Adding a Transformer
+
+==== What is a Transformer?
+Transformers convert message payloads to formats expected by their destinations. Mule ESB provides many standard transformers, which users can configure using elements and attributes in a Mule XML configuration file.
+
+Sometimes it's useful to build custom transformers.
+
+Annotating a method with @Transformer signals the DevKit to export a method functionality as a transformer. You need to declare Transformers in classes annotated with @Module or @Connector and you can declare more than one transformer in a single class. It is possible to declare transformers, message processors, and message sources all in the same class.
+
+An @Transformer annotated method must:
+
+* Be static
+* Be public
+* Not return void
+* Not return java.lang.Object
+* Receive exactly one argument
+* Be inside a class annotated with @Connector
+
+==== Creating a Transformer
+
+In our case, we are creating a transformer that converts a +List<Recipe>+ into a +List<Map<String,Object>>+, that way we don't need to modify our existing operation, and yet we can use the output of it in operations that recieve a +List<Map<String,Object>>+.
+
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v6/CookBookConnector.java[lines=163..169]
+----
+
+==== Using Your Transformer in a Mule App
+
+To use your transformer, just drag and drop it from the palette and build a flow.
+
+* Here we are using it explicitly to map transform the recipes into a Map.
+
+++++
+<div class="panel panel-default no-padding">
+    <div class="panel-heading no-padding">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#transformer-view" role="tab" data-toggle="tab">Mule App</a></li>
+            <li><a href="#transformer-xml" role="tab" data-toggle="tab">XML</a></li>
+        </ul>
+    </div>
+
+    <!-- Tab panes + Panel body -->
+    <div class="panel-body tab-content no-padding">
+        <div class="tab-pane in active fade no-padding" id="transformer-view">
+++++
+image::transformer/transformer-explicit.png[width="600"]
+++++
+        </div>
+        <div class="tab-pane fade no-padding" id="transformer-xml">
+++++
+
+[source,xml,indent=0]
+----
+include::{resourcesDir}/mule-app/transformer-example.xml[]
+----
+
+++++
+        </div>
+    </div>
+</div>
+++++
+
+
+* Transformers can also be used implicitly as long as only one transformer is found to resolve the type.
+
+. Define another transformer that can transform Recipe object into Map<String,Object>
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v8/CookBookConnector.java[lines=226..232]
+----
++
+. Install the connector.
++
+. In your mule app create a flow that takes the first item of the list and add an update operation after it. Don't use the transformer.
++
+++++
+<div class="panel panel-default no-padding">
+    <div class="panel-heading no-padding">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#transformer2-view" role="tab" data-toggle="tab">Mule App</a></li>
+            <li><a href="#transformer2-xml" role="tab" data-toggle="tab">XML</a></li>
+        </ul>
+    </div>
+
+    <!-- Tab panes + Panel body -->
+    <div class="panel-body tab-content no-padding">
+        <div class="tab-pane in active fade no-padding" id="transformer2-view">
+++++
++
+image::transformer/transformer-implicitly.png[width="600"]
++
+++++
+        </div>
+        <div class="tab-pane fade no-padding" id="transformer2-xml">
+++++
++
+[source,xml,indent=0]
+----
+include::{resourcesDir}/mule-app/transformer2-example.xml[]
+----
++
+++++
+        </div>
+    </div>
+</div>
+++++
++
+. Run the example and see that the flow will execute successfully.
+
+See:
+
+* http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_transformers[Testing your Transformer].

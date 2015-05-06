@@ -1,0 +1,5 @@
+== Features in Tutorial
+
+In this tutorial you will learn how to create a connector, using the DevKit, that users can interact with in Mule and Anypoint Studio.
+
+As you move forward you will learn the features that DevKit provides to help you build Mule connectors, and how easy it can be to extend Mule.

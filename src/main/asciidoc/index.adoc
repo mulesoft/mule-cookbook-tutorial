@@ -1,0 +1,234 @@
+:doctype: book
+:imagesdir: ./images
+:resourcesDir: resources
+:tutorial: Cookbook
+:author: MuleSoft Inc.
+:toc: left
+:icons: font
+:website: http://mulesoft.org/
+:muleJerseyVersion: 2.11
+:toclevels: 2
+:title: Cookbook Tutorial - MuleSoft
+:source-highlighter: coderay
+:coderay-linenums-mode: inline
+:iconsdir: {asciidoc-dir}/{iconsdir}
+
+= Cookbook Tutorial
+
+include::features-covered.adoc[]
+
+include::introduction.adoc[]
+
+include::requirements.adoc[]
+
+include::service-description.adoc[]
+
+== Getting started
+
+To build a basic connector for the {tutorial} service, we need to do the following things:
+
+. Create a Connector Project.
+. Add the dependency that contains the client we will use to connect to the service.
+. Add a configurable URL so that users can specify the URL where the service is hosted.
+. Add an operation that users can consume in Anypoint Studio.
+
+=== Create the {tutorial} Connector
+
+. In Anypoint Studio, click *File* > *New* > *Anypoint Connector Project* or right-click your project name in Package Explorer and click *New* > *Anypoint Connector Project*:
++
+image::new-connector-1.png[width="500"]
++
+. Specify the name of your connector and don't forget to uncheck the default generation before clicking *Finish*:
++
+image:new1.png[width="550"]
++
+This generates a project containing the structure and all required elements including a skeleton connector, images, sample docs file, but no basic tests for your connector.
++
+image::new-connector-3.png[width="600",link="images/new-connector-3.png"]
++
+[NOTE]
+====
+You can customize the icons by replacing the generated ones. Just make sure that they have the same size so that they look good in Studio.
+====
++
+You can enable the DevKit view by clicking from the top bar *Window* > *Show view* > *Other*, and look for DevKit in the list.
++
+.DevKit View shows a compact view of the connector.
+image::enable-view.png[width="300"]
++
+[NOTE]
+====
+You can check detailed explanation of the relation between <<connector-structure,connector>> structure and Studio.
+====
+
+When consuming a service, you may need to configure different values to establish a connection.
+
+To solve this, DevKit provides a pair of annotations that let you modularize in different classes:
+
+* The behavior you expose to users, using the @Connector annotation.
+* Code related to the connection/configuration is injected into your @Config annotated field. There are several types of configuration you can use as we will see in this tutorial.
+
+[TIP]
+====
+When you mark a field with @Config, DevKit ensures that you have an initialized object set when the Mule app runs and that requests are made to your connector.
+====
+
+==== Adding Dependencies
+
+Let's start coding and create a connector that allows you to get the recently added elements.
+
+Since we don't need any kind of authentication to consume the recently added recipes, this is the best operation we can use to start learning how to build our @Connector.
+
+. Add our client dependency so that we can use it in our connector. This way we can use the Java API built to connect to the {tutorial}.
++
+In your pom.xml file add:
++
+[source,xml,indent=0]
+----
+<dependencies>
+  <dependency>
+    <groupId>com.cookbook.tutorial</groupId>
+    <artifactId>sdk-client</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </dependency>
+</dependencies>
+----
+
+include::add-configurable.adoc[]
+
+=== Initialize the Client
+
+. On your @Connector marked class use the @Start annotation on a method to initialize the client.
++
+[source,java]
+----
+include::{resourcesDir}/java/v1/CookbookConnector.java[lines=30..35]
+----
++
+[NOTE]
+====
+Anypoint connectors can be fully aware of Mule's lifecycle without implementing any Mule-specific interface.
+
+There is an annotation method for each of the four phases of Mule lifecycle.
+
+When a method is annotated with one of these annotations, DevKit invokes the method during the Mule lifecycle phase that the annotation represents.
+====
+
+include::processor-section.adoc[]
+
+include::connection-management.adoc[]
+
+include::errorHandling.adoc[]
+
+include::datasense.adoc[]
+
+include::pagination.adoc[]
+
+// TODO Document batch
+// include::batch.adoc[]
+
+include::install-connector.adoc[]
+
+include::debug.adoc[]
+
+// TODO IGNORE DOCUMENTATION SECTION FOR NOW
+// include::documenting.adoc[]
+
+== Sharing My Connector
+
+Connector, as a component that can be installed in Anypoint Studio, is an Update Site.
+
+Update Sites are used to organize and export features so they can be installed into Eclipse applications.
+
+When the site is built, the included features (along with all plug-ins part of those features) will be exported into an installable form. The exported plug-ins and features will be put into two folders "plug-ins" and "features". Two other files, "content.xml" and "artifacts.xml" will also be generated and contain metadata for the exported files that make installing easier. These files, along with "site.xml", collectively form an Eclipse update site. To make the update site available to others you must make all these files available in a shared directory or web site.
+
+When building a connector, DevKit generates this for you, so that you don't need to worry about generating this.
+
+You can use the Anypoint DevKit plugin to either install the connector on your current Studio, or export it as an update-site for others to use.
+
+== Others
+
+[[connector-structure]]
+=== Connector Structure
+
+In order to see how all the components are related, lets create a Hello World connector:
+
+. In Anypoint Studio, click *File* > *New* > *Anypoint Connector Project* or right-click your project name in Package Explorer and click *New* > *Anypoint Connector Project*:
++
+image::new-connector-1.png[width="500"]
++
+. Specify the name of your connector and click *Finish*:
++
+image::new-connector-2.png[width="500"]
++
+This generates a project containing the structure and all required elements including a skeleton connector, images, sample docs, and basic tests for your connector.
++
+image::new-connector-3.png[width="600"]
++
+. Enable the DevKit view by clicking from the top bar *Window* > *Show view* > *Other*, and look for DevKit in the list.
++
+image::enable-view.png[width="300", height="400"]
+
+Your connector initially consists of message processors and user interface elements. Users can configure the UI elements in Anypoint Studio.
+
+The DevKit makes it easy to install a connector in Studio. After you install it in Studio, users can search for your connector and drag it into a Mule flow.
+
+Installing only requires right-clicking the name of the connector in Studio's Package Explorer, and clicking *Anypoint Connector* > *Install or Update*, completing the prompts, and restarting Studio, as you can see at the <<install-guide,install section>>. You can install at any point during coding including installing the starting skeleton connector.
+
+Let's check the structure of the skeleton connector.
+
+In this image you can see how most of the code maps into UI elements.
+
+// TODO: Use 2 images of screenshots with the default layout
+
+image::split-1-high.png[caption="Figure 1: ", title="View Structure and UI", alt="Image1", width="800", link="images/split-1-high.png"]
+
+In this example, you can check how the code matches to XML and other UI elements.
+
+// TODO: Use 2 images of screenshots with the default layout
+
+image::split-2-high.png[caption="Figure 2: ", title="View configuration and XML", alt="Image2", width="800", link="images/split-2-high.png"]
+
+[NOTE]
+====
+@ConnectionStrategy annotation is deprecated. Users instead should use @Config. On this views, consider the ConnectionStrategy as the ConnectorConfig
+====
+
+include::configurables.adoc[]
+
+include::oauth2.adoc[]
+
+include::multiple-connection-strategies.adoc[]
+
+include::source.adoc[]
+
+include::transformer.adoc[]
+
+// === Improve UI Layout
+
+// ==== Using friendlyName
+
+// TODO
+
+// Show how to change the display name of the @Connector
+
+=== Using @Password
+
+When using the @Password in a @Connect parameters, generate in the UI a masked input field.
+
+[source,java]
+----
+include::{resourcesDir}/java/v2/ConnectorConfig.java[lines=41..43]
+----
+
+In Studio this translates into:
+
+image::password.png[width="500"]
+
+// ==== Using @Placement
+
+// Defines the placement of a configurable attribute in the Anypoint Studio configuration.
+
+//TODO
+
+include::other-api.adoc[]

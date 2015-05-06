@@ -1,0 +1,53 @@
+[[install-guide]]
+== Installing a Connector
+
+Installing the connector is basically the same as installing any Eclipse plugin.
+
+[[steps-to-install]]
+To install your connector from the DevKit plugin:
+
+. Right-click your project name in Package Explorer, and click *Anypoint Studio* > *Install Or Update*.
++
+image::install/install1.png[width="500"]
++
+This triggers the DevKit Maven build tool, which generates an http://help.eclipse.org/luna/index.jsp?topic=%2Forg.eclipse.pde.doc.user%2Fconcepts%2Fupdate_site.htm[update site] folder.
++
+After the update site generates, a popup opens showing the task that is performed.
+[[install-dialog]]
+image::install/install12.png[width="500"]
++
+. Review the installation and update items, and accept the license agreement.
++
+. Click *Finish* and restart Studio for the changes to be recognized.
++
+NOTE: JAR files are not signed during this run, so you see a popup.
++
+image::security-warning.png[width="600"]
++
+. You can now use your connector in a Mule app.
++
+image::install/install2.png[width="600"]
+
+
+The same can be achieved by manually selection the update site:
+
+. Open a command prompt or terminal and change directory to where the pom.xml file is for your project (in the Eclipse workspace).
+. Run *mvn clean package*.
+. Click *Help* > *Install New Software*.
++
+image::install/install-updatesite.png[width="600"]
++
+. Click *Add* and in the new dialog look for the folder.
+. Click the UpdateSite file, generated under the target folder.
++
+image::install/install-updatesite2.png[width="600"]
++
+You can either select the zip file named UpdateSite.zip or the folder update-site.
++
+image::install/install-updatesite3.png[width="600"]
++
+. After you click OK, you see the dialog described in the <<install-dialog,previous section>>.
+
+== Updating a Connector
+
+To update your connector you can repeat the steps made for <<steps-to-install,installing>> it.

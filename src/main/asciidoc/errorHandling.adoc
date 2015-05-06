@@ -1,0 +1,66 @@
+:resourcesDir: resources
+
+== Improving Error Handling
+
+This section explains how to improve exception handling and reconnecting.
+
+=== Exception Handling with @Handler
+
+The http://www.mulesoft.org/documentation/display/current/Annotation+Reference#AnnotationReference-handleran[@Handler] feature, is very useful when you want to avoid duplicated code when handling exceptions, and also so that your connector code is clean.
+
+When handling messages retrieved from the API, if the message is poor and you know how to improve it, you can us this mechanism, to enrich the error provided to the user.
+
+To see how it works, lets create one to handle the InvalidEntityException thrown by the create call of the Cookbook SDK.
+
+. Open the new Anypoint Connector Component by doing a right click and selecting the wizzard.
++
+image::new-component.png[width="600"]
++
+. Select the package, component type and class name and click on Finish.
++
+image::new-component-2.png[width="600"]
++
+. Improve the error message when InvalidEntityException is thrown.
++
+[source,java]
+----
+include::{resourcesDir}/java/v3/CookbookHandler.java[lines=11..19]
+----
++
+Check the full link:{resourcesDir}/java/v3/CookbookHandler.java[source code].
++
+. Add a new processor to create Ingredients
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v3/CookbookConnector.java[lines=59..63]
+----
++
+Check the full link:{resourcesDir}/java/v3/CookbookConnector.java[source code].
+
+=== Handling Session Expiration
+
+There is no need for users to add custom code in their Mule apps to handle session expiration. DevKit provides a mechanism to do this in a clean way.
+
+Just annotate your @Processor method with the @ReconnectOn exception.
+
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v3/CookbookConnector2.java[lines=60..65]
+----
+
+Check the full link:{resourcesDir}/java/v3/CookbookConnector2.java[source code].
+
+In our Mule app, you can configure a reconnection strategy so that our Mule app is ready to  handle session expirations.
+
+Global Config dialog configuration:
+
+image::reconnect.png[width="500"]
+
+The XML generated looks like:
+[source,xml]
+----
+<cookbook:config-type doc:name="config" name="config" password="admin" username="admin">
+    <reconnect/>
+</cookbook:config-type>
+----

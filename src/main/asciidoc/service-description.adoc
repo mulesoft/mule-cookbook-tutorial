@@ -1,0 +1,66 @@
+:resourcesDir: resources
+
+== {tutorial} Description
+The {tutorial} is a service that helps users organize ingredients and recipes, so that users can easily find recipes for the foods they like to prepare.
+
+=== API Description
+
+This API allows users to use the create, read, update, and delete (CRUD) operations for single and multiple recipes and ingredients. The API also allows you to view recently added recipes.
+
+The API is exposed as a SOAP Service using a  link:{resourcesDir}/wsdl/IMuleCookBookService.wsdl[WSDL] file, as a Rest API with a link:{resourcesDir}/api.raml[RAML] file, and through a Java  link:{resourcesDir}/java/IMuleCookBookClient.java[SDK].
+
+
+=== Authentication
+
+This connector supports the following authentication types:
+
+* Custom with a username and password that provides a token to send with each request as part of the request.
+
+* http://oauth.net/2/[OAuthV2]
+
+==== Credentials
+
+===== Custom Authentication:
+[cols="2*",options="header"]
+|===
+| Username
+| Password
+
+| admin
+| admin
+|===
+
+===== OAuth:
+[cols="2*",options="header"]
+|===
+| Client ID
+| Client Secret
+
+| ePU9CxyEVFIXF9nMoGH16s1lUGe5JYPPzClnnVBG
+| YeKAsQCdr264tNmDdvTdJUAh9TQraJqZpwbEoTuz
+|===
+
+=== Connecting to the Service
+
+The web service is available online.
+
+* To consume the SOAP version and the SDK just make the request to the address: *http://devkit-cookbook.cloudhub.io/soap*
+
+* The rest base url is *http://devkit-cookbook.cloudhub.io/rest*
+
+** The OAuth Authorize url is */oauth/authorize*
+
+** The Access Token url is */oauth/accessToken*
+
+[NOTE]
+====
+You can also run it locally since we will provide the source code for the servers already ready to start.
+
+The local SOAP Server can be run from the soap-server project by simple executing the com.cookbook.tutorial.service.MuleStoreServer class.
+
+By Default it starts the server on address *http://localhost:9090/cook-book*
+
+The local Rest Server can be run from the rest-server project by simple executing the com.cookbook.tutorial.Main class.
+
+By Default is starts the server on address *http://localhost/9091*
+====

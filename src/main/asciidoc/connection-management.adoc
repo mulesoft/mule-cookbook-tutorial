@@ -1,0 +1,94 @@
+=== Adding Connection Management
+
+Unlike the *getRecentlyAdded* call that doesn't need for you to be authenticated, all other operations require that you set a token on each request.
+
+The client you are using provides a login call that initializes the token and uses it in subsequent requests.
+
+[NOTE]
+====
+Take into account that the session can expire and cause the connector to make a login request again.
+====
+
+DevKit provides a different set of annotations to keep your code clean and handle the connection in a different class for delegating responsibilities.
+
+To implement @ConnectionManagement, you need to instead of using the @Start annotation as we did before, move the initialization to @ConnectionManagement.
+
+. In the ConnectorConfig change the @Configuration for a @ConnectionManagement annotation
++
+[source,java]
+----
+include::{resourcesDir}/java/v2/ConnectorConfig.java[lines=29]
+----
++
+. Add the MuleCookbookClient to the ConnectorConfig and add a getter and getter.
++
+[source,java]
+----
+include::{resourcesDir}/java/v2/ConnectorConfig.java[lines=91..100]
+----
++
+. Implement these four methods as shown in the code sample that follows:
++
+* *@Connect* - Initialize the client, and if you don't have a login, call the API to verify.
++
+[source,java]
+----
+include::{resourcesDir}/java/v2/ConnectorConfig.java[lines=41..50]
+----
++
+* *@Disconnect* - Release any connection if required.
++
+[source,java]
+----
+include::{resourcesDir}/java/v2/ConnectorConfig.java[lines=55..58]
+----
++
+* *@ValidateConnection* - Check that your connection is alive.
++
+[source,java]
+----
+include::{resourcesDir}/java/v2/ConnectorConfig.java[lines=63..66]
+----
++
+* *@ConnectionIdentifier* - Return a string value. This will only be used when debugging.
++
+[source,java]
+----
+include::{resourcesDir}/java/v2/ConnectorConfig.java[lines=71..74]
+----
++
+. Remove the MuleCookBookClient from the CookbookConnector and the @Start method
++
+. On our @Processor use the client provided by the ConnectorConfig
++
+[source,java]
+----
+include::{resourcesDir}/java/v2/CookbookConnector.java[lines=35..38]
+----
+
+See:
+
+* link:{resourcesDir}/java/v2/CookbookConnector.java[Connector] source code.
+
+* link:{resourcesDir}/java/v2/ConnectorConfig.java[Config] source code.
+
+If you try to run our tests, now we see that the test fails with a SAXParseException because we need to add a username and password to our configuration.
+
+Same will happen if you install this version and try to run the mule app we created before.
+
+Just open the global configuration of your connector and check that there are 2 new fields, username and password. Configure them and you can run the app again.
+
+image::connection-management.png[width="600"]
+
+This is the mule updated xml:
+
+[source,xml,indent=0]
+----
+include::{resourcesDir}/mule-app/mule-app-connection-management.xml[]
+----
+
+See:
+
+* http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_test_connection[Testing Connection].
+
+* http://www.mulesoft.org/documentation/display/current/Authentication[DevKit Authentication] documentation.

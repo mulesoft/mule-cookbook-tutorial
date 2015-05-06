@@ -1,0 +1,28 @@
+=== Adding OAuthV2
+
+The Server can also provide the token using OAuth 2.0, instead of doing a login request.
+
+In order to use OAuth in you connector you just need to annotate your strategy with the @OAuth2 annotation.
+
+If you only had the OAuth2 Strategy your strategy would look like:
+
+[source,java,linenums]
+----
+include::{resourcesDir}/java/v9/OAuth2StandAloneStrategy.java[]
+----
+
+All our operations now need to be marked with the @OAuthProtected, even our @Source.
+
+In our Connector for example you will see:
+[source,java]
+----
+include::{resourcesDir}/java/v9/CookBookConnector.java[lines="118..137"]
+----
+
+Check link:{resourcesDir}/java/v9/CookBookConnector.java[full source] code.
+
+See:
+
+* http://www.mulesoft.org/documentation/display/current/Authentication[DevKit Authentication] documentation.
+* http://www.mulesoft.org/documentation/display/current/OAuth+V2[OAuth V2].
+* <<mutiple-connection-strategies,Supporting Multiple Connection Strategies>>.

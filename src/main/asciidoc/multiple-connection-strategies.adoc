@@ -1,0 +1,51 @@
+[[mutiple-connection-strategies]]
+
+=== Multiple Configuration
+
+If you want to have multiple connection configurations there are two things to take into account:
+
+* All Configurations either need to implement the same interface or have a common parent class.
+* The connector Config field needs to either the interface o the common parent class.
+
+If your configuration have common fields, they can be defined at a parent class.
+
+In our connector, after the refactor the classes would look like this:
+[plantuml,model,png]
+----
+title Multiple Configurations
+
+ConnectorConfig <|-- ConnectionManagementConfig
+ConnectorConfig <|-- OAuthConfig
+CookBookConnector *- ConnectorConfig : config
+
+
+abstract class ConnectorConfig {
+- MuleCookBookClient client
+- String endpoint
+}
+
+class CookBookConnector {
+
+}
+
+class ConnectionManagementConfig {
+}
+
+class OAuthConfig {
+-String consumerKey
+-String consumerSecret
+-String accessToken
+}
+----
+
+See:
+
+* link:{resourcesDir}/java/v9/CookBookConnector.java[Connector] source code.
+
+* link:{resourcesDir}/java/v9/ConnectorConnectionStrategy.java[Base Config] source code.
+
+* link:{resourcesDir}/java/v9/ConnectionManagementStrategy.java[Connection Management Config] source code.
+
+* link:{resourcesDir}/java/v9/OAuthStrategy.java[OAuth2 Config] source code.
+
+//TODO Rename Strategy to config

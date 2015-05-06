@@ -1,0 +1,75 @@
+== Adding Pagination
+
+=== Implement Pagination
+In order to show this feature you are going to add a processor that will call the searchWithQuery operation of the SDK.
+
+You need to do 3 things in order to have a paginated operation:
+
+[source,java]
+----
+include::{resourcesDir}/java/v8/CookbookConnector.java[lines=209..216]
+----
+<1> - Annotated your processor with @Paged.
+<2> - Return a ProviderAwarePagingDelegate
+<3> - Receive as one of your parameters a PagingConfiguration
+
+--
+When implementing your ProviderAwarePagingDelegate you need to specify two elements:
+
+. The type of the list you will return in each page. In your case a Map<String,Object>
+
+. The type of the Connector.
+
+To create it use the Anypoint Devkit Component wizzard and:
+
+. Specify the package were you want to create it. In this example *org.mule.cookbook.pagination*
+
+. Specify you want to create a ProviderAwarePagingDelegate.
+
+. Set the class name as CookbookPagingDelegate
++
+image::pagination-component.png[width="600"]
+
+After that you just need to implement the methods required for you to handle the new page request.
+
+You can find the full source code of the link:{resourcesDir}/java/v8/CookbookPagingDelegate.java[CookbookPagingDelegate].
+--
+NOTE: If you have a reconnection strategy, DevKit will automatically reconnect and retry to get a page. It is important that you handle the state of your PagingDelegate to make sure you retry the last page that was not retrieved.
+
+See:
+
+* http://www.mulesoft.org/documentation/display/current/Adding+Query+Pagination+Support[Adding Pagination Support].
+
+=== Using Pagination In Your Mule App
+
+You can for example use a foreach in front of your paged processor:
+++++
+<div class="panel panel-default no-padding">
+    <div class="panel-heading no-padding">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#page-view" role="tab" data-toggle="tab">Mule App</a></li>
+            <li><a href="#page-xml" role="tab" data-toggle="tab">XML</a></li>
+        </ul>
+    </div>
+
+    <!-- Tab panes + Panel body -->
+    <div class="panel-body tab-content no-padding">
+        <div class="tab-pane in active fade no-padding" id="page-view">
+++++
+image::pagination-example.png[width="600"]
+++++
+        </div>
+        <div class="tab-pane fade no-padding" id="page-xml">
+++++
+
+[source,xml,indent=0]
+----
+include::{resourcesDir}/mule-app/pagination-example.xml[]
+----
+
+++++
+        </div>
+    </div>
+</div>
+++++

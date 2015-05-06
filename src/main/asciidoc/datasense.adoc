@@ -1,0 +1,191 @@
+:mule: Mule Cookbook
+
+== Adding DataSense
+
+=== What is it?
+
+DataSense improves the user experience at design time when creating Mule applications by enabling your connector to determine the API of your target resource.
+
+Even though DataSense is optional, its use enables connector users acquire metadata of the entities in a service.
+
+See:
+
+* http://www.mulesoft.org/documentation/display/current/Adding+DataSense[Adding DataSense]
+* http://www.mulesoft.org/documentation/display/current/DataSense[DataSense]
+
+In this tutorial, we use a static DataSense model, which means that the entities are fixed and known, and do not change. The fields that this model supports are also fixed.
+
+==== Using DataSense
+
+To use DataSense in the cookbook:
+
+. Analyze the entities in {mule} service. We just have two simple entities, Recipe and Ingredient that both extend from CookBookEntity.
+. Look at how our createIngredient operation looks inside Anypoint Studio, and how it interacts with other components.
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v3/CookbookConnector2.java[lines=60..65]
+----
+
+===== Handling Ingredients
+
+We defined the operation so that it receives an Ingredient, and it returns an Ingredient with the extra fields populated from the server.
+
+Let's handle the ingredients:
+
+. Check the input metadata to see that the expected output is a POJO, with the expected fields our Ingredient has:
++
+image::datasense/datasense-expected-ingredients.png[width="600"]
++
+. Verify that the output metadata is expected:
++
+image::datasense/datasense-ingredients.png[width="600"]
++
+. Drag and drop a DataMapper either behind or after our connector. The DataMapper automatically picks the input or output:
++
+image::datasense/datasense-datamapper.png[title="DataMapper Receiving Connector Output", width="600"]
++
+image::datasense/datamapper-output1.png[title="DataMapper Setting Connector Input",width="900"]
++
+Because DevKit auto-generates static metadata, DevKit automatically ensures that your connector knows how to propagate metadata information.
+
+===== Handling Recipes
+
+We don't have just Ingredients, we also have Recipes, so we don't want one method for each entity we have in our model.
+
+Modify your connector to just work with the CookBookEntity class:
+
+. Create an operation:
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v4/CookbookConnector.java[lines=67..72]
+----
++
+. The *@RefOnly* annotation is used to tell DevKit that the input can only be specified as a reference (due to a DevKit limitations on handling Abstract classes).
++
+Let's see how this affects the UI and user experience.
++
+Studio, can no longer determine input or output type:
++
+image::datasense/ref-only-input.png[title="Connector Input with @RefOnly",width="900"]
++
+image::datasense/ref-only-output.png[title="Connector Output with Abstract Class",width="900"]
++
+Even if DataMapper is not automatically populated with the type:
++
+image::datasense/ref-only-datamapper.png[title="DataMapper with connector with @RefOnly parameter",width="900"]
++
+We are forced to manually configure the input:
++
+image::datasense/manual-datamapper.png[title="Selecting a POJO manually",width="900"]
+
+In the next section we get back our DataMapper-friendly user experience.
+
+The full source code of our connector with a create, update, get and delete operation is available link:{resourcesDir}/java/v4/CookbookConnector.java[here].
+==== Implementing adding @MetaDataCategory
+
+To implement DataSense using a @MetaDataCategory, you need to separate your implementation in two steps, retrieving the keys and describing the keys.
+
+. Use the Anypoint DevKit Component wizard to create a new MetaDataCategory
++
+image::datasense/new-metadatacategory.png[width="600"]
++
+. Modify the method annotate with @MetaDataKeyRetriever to retrieve two keys, one for Recipe and another for Ingredient.
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v5/DataSenseResolver.java[lines=28..36]
+----
++
+. Modify the method annotate with @MetaDataRetriever, to retrieve the description. Because we use a static model, we can just create a POJO model:
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v5/DataSenseResolver.java[lines=48..64]
+----
++
+Check the full link:{resourcesDir}/java/v5/DataSenseResolver.java[source code].
+
+To use this in our connector, modify our @Processors so that a user can pick the entities.
+
+. Annotate our @Connector class with the @MetaDataScope annotation. This sets the default MetaDataCategory that's used every time users choose a @Processor that has a @MetaDataKeyParam.
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v5/CookbookConnector.java[lines=35..37]
+----
++
+. To describe input and output, add a String annotated with *@MetaDataKeyParam*, and specify that it affects input and output by adding the *affects=MetaDataKeyParamAffectsType.BOTH* :
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v5/CookbookConnector.java[lines=69..75]
+----
++
+. In your get operation you need specify that the affect only applies to the output so we modify it just a little:
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v5/CookbookConnector.java[lines=115..121]
+----
++
+. Check our new connector looks in Studio. We have a combo after we select the entity type and save it. This automatically refreshes our metadata.
++
+image::datasense/datasense-static.png[width="800"]
++
+Now even DataMapper knows how to interact with our @Connector:
++
+image::datasense/datasense-static2.png[width="800"]
+
+View connector full source code link:{resourcesDir}/java/v5/CookbookConnector.java[here].
+
+Here you can download a small link:{resourcesDir}/mule-app/datasense-app.xml[mule app] with a dummy subflow that shows the input and output of datamapper.
+
+==== Dynamic DataSense
+
+In the previous section we covered the scenario when your model is static. Let's take a look into a much more complex scenario.
+
+There are APIs that provide a way to get entities definitions dynamically. Salesforce, NetSuite are just some examples of this.
+
+In our case, our Cookbook provides an operation that describes our entities, so let's use that instead to get the entities and structure:
+
+. Get the supported entities, and generate a key that we can use later:
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v6/DataSenseResolver.java[lines=39..51]
+----
++
+. Use a structure that we can dynamically modify, and the way to do this in Mule is by using a +Map<String,Object>+ as parameters and/or return types of our connector.
++
+Mule provides a builder that helps us generate the MetaData for the entities.
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v6/DataSenseResolver.java[lines=60..87]
+----
++
+. Check the full link:{resourcesDir}/java/v6/DataSenseResolver.java[source code].
++
+. In our @Connector now we need to add the code to generate the entities from the Map, and return Map in all our operations. Why is this important? To maintain consistency in our API.
++
+This is how our new Create looks like:
++
+[source,java,indent=0]
+----
+include::{resourcesDir}/java/v6/CookBookConnector.java[lines=73..88]
+----
++
+Note that now the UI is a different form than before, because the input is not a map.
++
+image::datasense/datamapper-ui.png[width="900"]
++
+. In our Mule app, we cannot update the metadata and use our connector, and as you can see note that we have a map structure instead of a POJO:
++
+image::datasense/datamapper-map.png[width="900"]
+
+To see how to test DataSense check our http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_datasense_dynamic_metadata[Testing Dynamic DataSense] guide.
+
+// TODO
+// === Adding @Query

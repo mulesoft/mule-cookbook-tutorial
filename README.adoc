@@ -1,0 +1,3 @@
+= Tutorial
+
+This project contains the Asciidoc files and resources used to generate the tutorial documentation.

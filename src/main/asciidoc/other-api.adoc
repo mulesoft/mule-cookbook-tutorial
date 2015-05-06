@@ -1,0 +1,125 @@
+== Using an API to Build a Connector
+
+APIs are exposed in several ways. To start using your API, set up different things before using it inside your connector.
+
+=== SDK Client
+
+If you have an SDK all you need to do is to include the Maven dependency for your jar in the pom.xml
+
+For example in our case, to consume the SDK for the Cookbook we can add the dependency.
+
+[source,xml,indent=0]
+----
+<dependencies>
+  <dependency>
+    <groupId>foo.sdk.group.id</groupId>
+    <artifactId>foo.sdk.artifact.id</artifactId>
+    <version>${sdk.version}</version>
+  </dependency>
+</dependencies>
+----
+
+=== SOAP API
+
+If you have a wsdl, the easiest way to build a connector is to create a client using cxf http://cxf.apache.org/docs/wsdl-to-java.html[wsdl2java].
+
+You can configure the CXF goal in your pom.xml file very easily. The full documentation is at the Apache  http://cxf.apache.org/docs/maven-cxf-codegen-plugin-wsdl-to-java.html[CXF site].
+
+For example in your pom.xml file, you can add the following plus all required dependencies:
+[source,xml,indent=0,linenums]
+----
+<build>
+  <plugins>
+    <!-- CXF Code generation -->
+    <plugin>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-codegen-plugin</artifactId>
+      <version>${cxf.version}</version>
+      <executions>
+        <execution>
+          <phase>clean</phase> <!-- This is so it work with the DevKit -->
+          <goals>
+            <goal>wsdl2java</goal>
+          </goals>
+          <configuration>
+            <wsdlOptions>
+              <wsdlOption>
+                <wsdl>${basedir}/src/main/resources/wsdl/IMuleCookBookService.wsdl</wsdl>
+                <autoNameResolution>true</autoNameResolution>
+                <extendedSoapHeaders>false</extendedSoapHeaders>
+                <extraargs>
+                  <extraarg>-xjc-Xbg</extraarg>
+                   <extraarg>-xjc-Xcollection-setter-injector</extraarg>
+                  <extraarg>-p</extraarg>
+                  <extraarg>org.mule.modules.wsdl.api</extraarg>
+                </extraargs>
+              </wsdlOption>
+            </wsdlOptions>
+          </configuration>
+         </execution>
+      </executions>
+      <dependencies>
+        <!-- Boolean Getters -->
+        <dependency>
+          <groupId>org.apache.cxf.xjcplugins</groupId>
+          <artifactId>cxf-xjc-boolean</artifactId>
+          <version>${cxf.version.boolean}</version>
+        </dependency>
+        <!-- Collection Setters -->
+        <dependency>
+          <groupId>net.java.dev.vcc.thirdparty</groupId>
+          <artifactId>collection-setter-injector</artifactId>
+          <version>0.5.0-1</version>
+        </dependency>
+      </dependencies>
+    </plugin>
+  </plugins>
+</build>
+----
+
+If you use the DevKit plugin it generates everything for you to get started, you just need to specify the WSDL location on your computer.
+
+=== REST API
+Write the request using any library that helps you make HTTP Requests.
+
+We recommend using Jersey {muleJerseyVersion}, which is provided in Mule version 3.6.0 and later.
+
+To make sure you always use the right version, add the following dependency.
+[source,xml,indent=0]
+----
+<dependencies>
+    <dependency>
+        <groupId>org.mule.modules</groupId>
+        <artifactId>mule-module-jersey</artifactId>
+        <version>${mule.version}</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
+----
+
+Example GET request:
+[source,java,indent=0,linenums]
+----
+ClientConfig clientConfig = new ClientConfig();
+Client client = ClientBuilder.newClient(clientConfig);
+WebTarget webTarget = client.target("http://example.com/rest");                     // # <1>
+WebTarget resourceWebTarget = webTarget.path("resource");
+WebTarget helloworldWebTarget = resourceWebTarget.path("helloworld");               // # <2>
+WebTarget helloworldWebTargetWithQueryParam =
+        helloworldWebTarget.queryParam("greeting", "Hi World!");                    // # <3>
+
+Invocation.Builder invocationBuilder =
+        helloworldWebTargetWithQueryParam.request(MediaType.APPLICATION_JSON_TYPE); // # <4>
+
+Response response = invocationBuilder.get();                                        // # <5>
+System.out.println(response.getStatus());
+System.out.println(response.readEntity(String.class));
+----
+<1> - The client is ready to make a request to URL http://example.com/rest
+<2> - Add paths for http://example.com/rest/resource/helloworld
+<3> - Configure a query param. It looks like http://example.com/rest/resource/helloworld?greeting=Hi+World%21
+<4> - Specify we want the reply in JSON format
+<5> - Make a GET request
+
+
+For more information, see the https://jersey.java.net/documentation/latest/client.html[Jersey client] documentation.

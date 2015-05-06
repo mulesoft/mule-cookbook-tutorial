@@ -1,0 +1,71 @@
+=== Using the Connector in Mule
+You will do a very simple app that listens to an HTTP endpoint and when we hit it, it will retrieve the list of recently added elements.
+
+. Create a mule app and add a simple http listener. If this is your first mule app, take a look at our http://www.mulesoft.org/documentation/display/current/Build+a+Hello+World+Application[Hello World Application].
+. Drag and drop the Connector, and configure it.
++
+image::mule-app/first-mule-app-config.png[width="600"]
++
+. Drag and drop an *Object to JSON* transformer and run the app.
+
+++++
+<div class="panel panel-default no-padding">
+    <div class="panel-heading no-padding">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#first-view" role="tab" data-toggle="tab">Mule App</a></li>
+            <li><a href="#first-xml" role="tab" data-toggle="tab">XML</a></li>
+        </ul>
+    </div>
+
+    <!-- Tab panes + Panel body -->
+    <div class="panel-body tab-content no-padding">
+        <div class="tab-pane in active fade no-padding" id="first-view">
+++++
+image::mule-app/first-mule-app.png[width="600"]
+++++
+        </div>
+        <div class="tab-pane fade no-padding" id="first-xml">
+++++
+
+[source,xml,indent=0]
+----
+include::{resourcesDir}/mule-app/first-mule-app.xml[]
+----
+
+++++
+        </div>
+    </div>
+</div>
+++++
+
+If you hit the url http://localhost:8081/get-recently you will see a reply similar to:
+
+[source,json]
+----
+[
+   {
+      "created":1428678371866,
+      "id":2,
+      "lastModified":null,
+      "name":"Baked Apples",
+      "cookTime":20.0,
+      "directions":[
+         "Cut the Apples",
+         "Put them in the oven",
+         "Remove from the oven after 20.0 minutes"
+      ],
+      "ingredients":[
+         {
+            "created":1428678371866,
+            "id":1,
+            "lastModified":null,
+            "name":"Apple",
+            "quantity":0.0,
+            "unit":"UNIT"
+         }
+      ],
+      "prepTime":30.0
+   }
+]
+----

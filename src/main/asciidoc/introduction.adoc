@@ -1,0 +1,22 @@
+== What is DevKit?
+
+The http://www.mulesoft.org/documentation/display/current/Anypoint+Connector+DevKit[DevKit] is an important part of the Anypoint Platform. The DevKit is a Maven-based tool that lets you build reusable components that not only can be run as part of a Mule application, but also can easily be configured and consumed from http://www.mulesoft.com/platform/mule-studio[Anypoint Studio].
+
+== When to Use DevKit
+
+Here are several scenarios in which you may want to build your own connector:
+
+* You need to consume an API in one or more applications and you want to make sure everyone uses the same component.
+* You have an API and want to add strategic value to your business by providing a connector and telling the world "I am part of Mule Platform".
+* You want to facilitate integration with SaaS and on-premise Web services, applications, and data sources.
+* The API you consume supports Pagination, Batch, and/or has a SQL capability.
+* The API you consume has different entity types and/or its structure can change.
+* You want to extend Mule core.
+
+== What is a Connector?
+
+A MuleSoft connector is a reusable component that interacts with Mule ESB and  Anypoint Studio. A connector enables Mule flows to communicate with a target resource. The connector conveys data between a resource and a Mule flow, and transforms the data into a Mule Message.
+
+Using Anypoint Connector DevKit, a connector abstracts developers from the Mule interfaces that are required to run the connector in the Mule platform, and generates a user interface.
+
+A connector also abstracts users from the complexity of initializing required elements such as connecting to a sandbox. A well-developed connector makes Mule apps much simpler for users by handling internal tasks like pagination, session expirations, and input and output metadata. This tutorial shows you how to create a well-developed connector.
