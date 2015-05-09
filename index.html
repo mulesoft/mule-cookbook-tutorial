@@ -9580,7 +9580,12 @@ To correctly debug your code, take into account that the Mule app you are runnin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">            <span class="directive">throws</span> InvalidEntityException, SessionExpiredException {
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="annotation">@OAuthProtected</span>
+    <span class="annotation">@Processor</span>
+    <span class="annotation">@OnException</span>(handler = CookbookHandler.class)
+    <span class="annotation">@ReconnectOn</span>(exceptions = { SessionExpiredException.class })
+    <span class="directive">public</span> <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt; create(<span class="annotation">@MetaDataKeyParam</span>(affects = MetaDataKeyParamAffectsType.BOTH) <span class="predefined-type">String</span> type, <span class="annotation">@Default</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#[payload]</span><span class="delimiter">&quot;</span></span>) <span class="annotation">@RefOnly</span> <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt; entity)
+            <span class="directive">throws</span> InvalidEntityException, SessionExpiredException {
         ObjectMapper m = <span class="keyword">new</span> ObjectMapper();
         CookBookEntity input = <span class="predefined-constant">null</span>;
         <span class="keyword">if</span> (type.contains(<span class="string"><span class="delimiter">&quot;</span><span class="content">com.cookbook.tutorial.service.Recipe</span><span class="delimiter">&quot;</span></span>)) {
@@ -9591,15 +9596,7 @@ To correctly debug your code, take into account that the Mule app you are runnin
             <span class="keyword">throw</span> <span class="keyword">new</span> InvalidEntityException(<span class="string"><span class="delimiter">&quot;</span><span class="content">Don't know how to handle type:</span><span class="delimiter">&quot;</span></span> + type);
         }
         <span class="keyword">return</span> m.convertValue(<span class="local-variable">this</span>.getConfig().getClient().create(input), <span class="predefined-type">Map</span>.class);
-    }
-
-    <span class="comment">/**
-     * Description for update
-     *
-     * {@sample.xml ../../../doc/cook-book-connector.xml.sample cook-book:update}
-     *
-     * @param entity
-     *            Ingredient to be updated</span></code></pre>
+    }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10198,7 +10195,7 @@ Response response = invocationBuilder.get();                                    
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-05-06 18:32:16 ART
+Last updated 2015-05-07 00:25:54 ART
 </div>
 </div>
 </body>
