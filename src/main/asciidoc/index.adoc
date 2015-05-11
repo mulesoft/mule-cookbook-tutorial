@@ -8,12 +8,12 @@
 :website: http://mulesoft.org/
 :muleJerseyVersion: 2.11
 :toclevels: 2
-:title: Cookbook Tutorial - MuleSoft
+:title: DevKit Tutorial - MuleSoft
 :source-highlighter: coderay
 :coderay-linenums-mode: inline
 :iconsdir: {asciidoc-dir}/{iconsdir}
 
-= Cookbook Tutorial
+= DevKit Tutorial
 
 include::features-covered.adoc[]
 
