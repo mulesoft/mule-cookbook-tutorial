@@ -27,7 +27,7 @@ http://www.mulesoft.org/documentation/display/current/Setting+Up+Your+Dev+Enviro
 
 To import the cookbook tutorial from Git:
 
-. Clone https://github.com/mulesoft/mule-cookbook[tutorial] repository into your local machine. For example, to clone to a *dev* folder, run:
+. Clone https://github.com/mulesoft/mule-cookbook[tutorial] repository into your local machine, and use the branch 3.6.x. For example, to clone to a *dev* folder, run:
 +
 [source,bash]
 ----
@@ -35,11 +35,12 @@ cd ~/dev
 git clone https://github.com/mulesoft/mule-cookbook.git
 ----
 +
-. In the cloned directory, run:
+. In the cloned directory, change to 3.6.x branch and run:
 +
 [source,bash]
 ----
 cd ~/dev/mule-cookbook
+git checkout 3.6.x
 mvn install eclipse:eclipse
 ----
 +
