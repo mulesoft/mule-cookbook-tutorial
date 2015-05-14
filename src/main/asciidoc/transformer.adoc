@@ -22,7 +22,7 @@ In our case, we are creating a transformer that converts a +List<Recipe>+ into a
 
 [source,java,indent=0]
 ----
-include::{resourcesDir}/java/v6/CookBookConnector.java[lines=163..169]
+include::{resourcesDir}/java/v6/CookbookConnector.java[lines=163..169]
 ----
 
 ==== Using Your Transformer in a Mule App
@@ -69,7 +69,7 @@ include::{resourcesDir}/mule-app/transformer-example.xml[]
 +
 [source,java,indent=0]
 ----
-include::{resourcesDir}/java/v8/CookBookConnector.java[lines=226..232]
+include::{resourcesDir}/java/v8/CookbookConnector.java[lines=226..232]
 ----
 +
 . Install the connector.
