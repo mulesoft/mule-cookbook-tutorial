@@ -16,7 +16,7 @@ title Multiple Configurations
 
 ConnectorConfig <|-- ConnectionManagementConfig
 ConnectorConfig <|-- OAuthConfig
-CookBookConnector *- ConnectorConfig : config
+CookbookConnector *- ConnectorConfig : config
 
 
 abstract class ConnectorConfig {
@@ -24,7 +24,7 @@ abstract class ConnectorConfig {
 - String endpoint
 }
 
-class CookBookConnector {
+class CookbookConnector {
 
 }
 
@@ -40,7 +40,7 @@ class OAuthConfig {
 
 See:
 
-* link:{resourcesDir}/java/v9/CookBookConnector.java[Connector] source code.
+* link:{resourcesDir}/java/v9/CookbookConnector.java[Connector] source code.
 
 * link:{resourcesDir}/java/v9/ConnectorConnectionStrategy.java[Base Config] source code.
 

@@ -18,7 +18,7 @@ image::source/source-template.png[width="600"]
 +
 [source,java,indent=0]
 ----
-include::{resourcesDir}/java/v7/CookBookConnector.java[lines=73..90]
+include::{resourcesDir}/java/v7/CookbookConnector.java[lines=73..90]
 ----
 
 . Install this new version

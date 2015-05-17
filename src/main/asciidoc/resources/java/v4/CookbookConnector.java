@@ -31,7 +31,7 @@ import com.cookbook.tutorial.service.SessionExpiredException;
  * @author MuleSoft, Inc.
  */
 @Connector(name = "cook-book", friendlyName = "CookBook")
-public class CookBookConnector {
+public class CookbookConnector {
 
     private MuleCookBookClient client;
 

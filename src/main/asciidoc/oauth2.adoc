@@ -16,10 +16,10 @@ All our operations now need to be marked with the @OAuthProtected, even our @Sou
 In our Connector for example you will see:
 [source,java]
 ----
-include::{resourcesDir}/java/v9/CookBookConnector.java[lines="113..129"]
+include::{resourcesDir}/java/v9/CookbookConnector.java[lines="113..129"]
 ----
 
-Check link:{resourcesDir}/java/v9/CookBookConnector.java[full source] code.
+Check link:{resourcesDir}/java/v9/CookbookConnector.java[full source] code.
 
 See:
 

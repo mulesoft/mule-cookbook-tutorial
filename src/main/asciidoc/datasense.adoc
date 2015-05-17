@@ -174,7 +174,7 @@ This is how our new Create looks like:
 +
 [source,java,indent=0]
 ----
-include::{resourcesDir}/java/v6/CookBookConnector.java[lines=73..88]
+include::{resourcesDir}/java/v6/CookbookConnector.java[lines=73..88]
 ----
 +
 Note that now the UI is a different form than before, because the input is not a map.
