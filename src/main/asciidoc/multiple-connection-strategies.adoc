@@ -5,9 +5,9 @@
 If you want to have multiple connection configurations there are two things to take into account:
 
 * All Configurations either need to implement the same interface or have a common parent class.
-* The connector Config field needs to either the interface o the common parent class.
+* The connector Config field needs to be declared either as the interface or as the common parent class.
 
-If your configuration have common fields, they can be defined at a parent class.
+If your configuration has common fields, they can be defined at a parent class.
 
 In our connector, after the refactor the classes would look like this:
 [plantuml,model,png]

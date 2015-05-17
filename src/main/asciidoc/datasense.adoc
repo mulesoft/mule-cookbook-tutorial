@@ -6,20 +6,20 @@
 
 DataSense improves the user experience at design time when creating Mule applications by enabling your connector to determine the API of your target resource.
 
-Even though DataSense is optional, its use enables connector users acquire metadata of the entities in a service.
+Even though DataSense is optional, its use enables connector users to acquire metadata of the entities in a service.
 
 See:
 
 * http://www.mulesoft.org/documentation/display/current/Adding+DataSense[Adding DataSense]
 * http://www.mulesoft.org/documentation/display/current/DataSense[DataSense]
 
-In this tutorial, we use a static DataSense model, which means that the entities are fixed and known, and do not change. The fields that this model supports are also fixed.
+In this tutorial, we use a static DataSense model, which means that the entities are fixed and known upfront, and do not change. The fields that this model supports are also fixed.
 
 ==== Using DataSense
 
 To use DataSense in the cookbook:
 
-. Analyze the entities in {mule} service. We just have two simple entities, Recipe and Ingredient that both extend from CookBookEntity.
+. Analyze the entities in {mule} service. We only have two simple entities, Recipe and Ingredient that both extend from CookBookEntity.
 . Look at how our createIngredient operation looks inside Anypoint Studio, and how it interacts with other components.
 +
 [source,java,indent=0]
@@ -83,7 +83,8 @@ image::datasense/manual-datamapper.png[title="Selecting a POJO manually",width="
 In the next section we get back our DataMapper-friendly user experience.
 
 The full source code of our connector with a create, update, get and delete operation is available link:{resourcesDir}/java/v4/CookbookConnector.java[here].
-==== Implementing adding @MetaDataCategory
+
+==== Implementing a MetaDataCategory
 
 To implement DataSense using a @MetaDataCategory, you need to separate your implementation in two steps, retrieving the keys and describing the keys.
 
@@ -102,7 +103,7 @@ include::{resourcesDir}/java/v5/DataSenseResolver.java[lines=28..36]
 +
 [source,java,indent=0]
 ----
-include::{resourcesDir}/java/v5/DataSenseResolver.java[lines=48..64]
+include::{resourcesDir}/java/v5/DataSenseResolver.java[lines=48..65]
 ----
 +
 Check the full link:{resourcesDir}/java/v5/DataSenseResolver.java[source code].
@@ -146,7 +147,7 @@ Here you can download a small link:{resourcesDir}/mule-app/datasense-app.xml[mul
 
 In the previous section we covered the scenario when your model is static. Let's take a look into a much more complex scenario.
 
-There are APIs that provide a way to get entities definitions dynamically. Salesforce, NetSuite are just some examples of this.
+There are APIs that provide a way to get entity definitions dynamically. Salesforce, NetSuite are just some examples of these.
 
 In our case, our Cookbook provides an operation that describes our entities, so let's use that instead to get the entities and structure:
 
@@ -181,7 +182,7 @@ Note that now the UI is a different form than before, because the input is not a
 +
 image::datasense/datamapper-ui.png[width="900"]
 +
-. In our Mule app, we cannot update the metadata and use our connector, and as you can see note that we have a map structure instead of a POJO:
+. In our Mule app, we cannot update the metadata and use our connector. And, as you can see, note that we have a map structure instead of a POJO:
 +
 image::datasense/datamapper-map.png[width="900"]
 

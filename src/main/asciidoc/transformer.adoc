@@ -3,7 +3,7 @@
 ==== What is a Transformer?
 Transformers convert message payloads to formats expected by their destinations. Mule ESB provides many standard transformers, which users can configure using elements and attributes in a Mule XML configuration file.
 
-Sometimes it's useful to build custom transformers.
+Sometimes it's useful to build your own custom transformers.
 
 Annotating a method with @Transformer signals the DevKit to export a method functionality as a transformer. You need to declare Transformers in classes annotated with @Module or @Connector and you can declare more than one transformer in a single class. It is possible to declare transformers, message processors, and message sources all in the same class.
 

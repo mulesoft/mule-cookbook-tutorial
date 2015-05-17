@@ -13,9 +13,11 @@ public class OAuthConfig {
 
     @OAuthAccessToken
     private String accessToken;
+
     @Configurable
     @OAuthConsumerKey
     private String consumerKey;
+
     @Configurable
     @OAuthConsumerSecret
     private String consumerSecret;

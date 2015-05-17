@@ -1,6 +1,6 @@
 === Adding Connection Management
 
-Unlike the *getRecentlyAdded* call that doesn't need for you to be authenticated, all other operations require that you set a token on each request.
+Unlike the *getRecentlyAdded* call doesn't require authentication, all other operations require that you set a token on each request.
 
 The client you are using provides a login call that initializes the token and uses it in subsequent requests.
 
@@ -11,7 +11,7 @@ Take into account that the session can expire and cause the connector to make a 
 
 DevKit provides a different set of annotations to keep your code clean and handle the connection in a different class for delegating responsibilities.
 
-To implement @ConnectionManagement, you need to instead of using the @Start annotation as we did before, move the initialization to @ConnectionManagement.
+To implement @ConnectionManagement, you need to move the initialization to @ConnectionManagement, instead of using the @Start annotation as we did before.
 
 . In the ConnectorConfig change the @Configuration for a @ConnectionManagement annotation
 +
@@ -72,9 +72,7 @@ See:
 
 * link:{resourcesDir}/java/v2/ConnectorConfig.java[Config] source code.
 
-If you try to run our tests, now we see that the test fails with a SAXParseException because we need to add a username and password to our configuration.
-
-Same will happen if you install this version and try to run the mule app we created before.
+If you install this version and try to run the mule app we created before, you will see that it fails with a SAXParseException because we need to add a username and password to our configuration.
 
 Just open the global configuration of your connector and check that there are 2 new fields, username and password. Configure them and you can run the app again.
 
