@@ -50,7 +50,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @MetaDataScope(DataSenseResolver.class)
 public class CookbookConnector {
 
-    @Config
+    @ConnectionStrategy
     ConnectorConfig config;
 
     /**
