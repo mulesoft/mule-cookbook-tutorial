@@ -6,7 +6,7 @@ Installing the connector is basically the same as installing any Eclipse plugin.
 [[steps-to-install]]
 To install your connector from the DevKit plugin:
 
-. Right-click your project name in Package Explorer, and click *Anypoint Studio* > *Install Or Update*.
+. Right-click your project name in Package Explorer, and click *Anypoint Connector* > *Install Or Update*.
 +
 image::install/install1.png[width="500"]
 +
@@ -28,17 +28,16 @@ image::security-warning.png[width="600"]
 +
 image::install/install2.png[width="600"]
 
-
 The same can be achieved by manually selection the update site:
 
 . Open a command prompt or terminal and change directory to where the pom.xml file is for your project (in the Eclipse workspace).
 . Run *mvn clean package*.
-. Click *Help* > *Install New Software*.
+. Click *Help* > *Install New Software...*.
 +
 image::install/install-updatesite.png[width="600"]
 +
 . Click *Add* and in the new dialog look for the folder.
-. Click the UpdateSite file, generated under the target folder.
+. Click the UpdateSite file, generated under your project's target folder.
 +
 image::install/install-updatesite2.png[width="600"]
 +

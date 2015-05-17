@@ -4,11 +4,11 @@
 In some cases it is necessary to create Message Sources instead of Message Processors.
 
 Basically, a Message Source receives or generates new messages to be processed by Mule.
-One of the use cases of Message Sources is implementing Streaming APIs. The @Source annotation marks a method inside a @Connector annotated class as callable from a Mule flow and capable of generating Mule events. Each marked method will have a Message Source generated. The method must receive a SourceCallback as one of its arguments that represents the next message processor in the chain. It does not matter the order in which this parameter appears as long it is present in the method signature.
+One of the use cases for a Message Source is implementing Streaming APIs. The @Source annotation marks a method inside a @Connector annotated class as callable from a Mule flow and capable of generating Mule events. Each marked method will have a Message Source generated. The method must receive a SourceCallback as one of its arguments that represents the next message processor in the chain. It does not matter the order in which this parameter appears as long it is present in the method signature.
 
-==== Implementing an Source
+==== Implementing a Message Source
 
-To create we are going to use the GetRecentlyAdded method.
+As an example, we are going to use the GetRecentlyAdded method.
 
 . Inside your @Connector type source and use Ctrl + Space bar to display the templates.
 +
@@ -61,4 +61,4 @@ include::{resourcesDir}/mule-app/source-example.xml[]
 
 See:
 
-* http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_testing_inbound_endpoints_sources[Testing Inbound Enppoints(@Source)].
+* http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_testing_inbound_endpoints_sources[Testing Inbound Endpoints(@Source)].

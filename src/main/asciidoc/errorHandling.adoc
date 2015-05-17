@@ -6,13 +6,13 @@ This section explains how to improve exception handling and reconnecting.
 
 === Exception Handling with @Handler
 
-The http://www.mulesoft.org/documentation/display/current/Annotation+Reference#AnnotationReference-handleran[@Handler] feature, is very useful when you want to avoid duplicated code when handling exceptions, and also so that your connector code is clean.
+The http://www.mulesoft.org/documentation/display/current/Annotation+Reference#AnnotationReference-handleran[@Handler] feature, is very useful when you want to avoid duplicated code when handling exceptions, and also so that your connector code is cleaner.
 
-When handling messages retrieved from the API, if the message is poor and you know how to improve it, you can us this mechanism, to enrich the error provided to the user.
+When handling messages retrieved from the API, if the message is poor and you know how to improve it, you can use this mechanism, to enrich the error provided to the user.
 
-To see how it works, lets create one to handle the InvalidEntityException thrown by the create call of the Cookbook SDK.
+To see how it works, let's create a handler for the InvalidEntityException thrown by the create() call of the Cookbook SDK.
 
-. Open the new Anypoint Connector Component by doing a right click and selecting the wizzard.
+. Create a new Anypoint Connector Component by doing a right click and selecting the wizzard.
 +
 image::new-component.png[width="600"]
 +

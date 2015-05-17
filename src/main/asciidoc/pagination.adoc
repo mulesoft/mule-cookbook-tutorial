@@ -20,7 +20,7 @@ When implementing your ProviderAwarePagingDelegate you need to specify two eleme
 
 . The type of the Connector.
 
-To create it use the Anypoint Devkit Component wizzard and:
+To create it use the Anypoint DevKit Component wizard and:
 
 . Specify the package were you want to create it. In this example *org.mule.cookbook.pagination*
 

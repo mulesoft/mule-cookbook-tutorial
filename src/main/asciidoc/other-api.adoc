@@ -1,6 +1,6 @@
-== Using an API to Build a Connector
+    == Using an API to Build a Connector
 
-APIs are exposed in several ways. To start using your API, set up different things before using it inside your connector.
+APIs are exposed in several ways. To start using your API, you should set up a few things before you can use it inside your connector.
 
 === SDK Client
 
@@ -21,11 +21,11 @@ For example in our case, to consume the SDK for the Cookbook we can add the depe
 
 === SOAP API
 
-If you have a wsdl, the easiest way to build a connector is to create a client using cxf http://cxf.apache.org/docs/wsdl-to-java.html[wsdl2java].
+If you have a wsdl, the easiest way to build a connector is to create a client using CXF http://cxf.apache.org/docs/wsdl-to-java.html[wsdl2java].
 
 You can configure the CXF goal in your pom.xml file very easily. The full documentation is at the Apache  http://cxf.apache.org/docs/maven-cxf-codegen-plugin-wsdl-to-java.html[CXF site].
 
-For example in your pom.xml file, you can add the following plus all required dependencies:
+For example, in your pom.xml file, you can add the following plus all required dependencies:
 [source,xml,indent=0,linenums]
 ----
 <build>
@@ -37,7 +37,7 @@ For example in your pom.xml file, you can add the following plus all required de
       <version>${cxf.version}</version>
       <executions>
         <execution>
-          <phase>clean</phase> <!-- This is so it work with the DevKit -->
+          <phase>clean</phase> <!-- This is required for it to work with DevKit -->
           <goals>
             <goal>wsdl2java</goal>
           </goals>

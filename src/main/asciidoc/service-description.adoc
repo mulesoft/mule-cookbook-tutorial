@@ -54,13 +54,13 @@ The web service is available online.
 
 [NOTE]
 ====
-You can also run it locally since we will provide the source code for the servers already ready to start.
+You can also run it locally since we provide the source code for the servers already ready to start.
 
-The local SOAP Server can be run from the soap-server project by simple executing the com.cookbook.tutorial.service.MuleStoreServer class.
+The local SOAP Server can be run from the soap-server project by simply executing the com.cookbook.tutorial.service.MuleStoreServer class.
 
-By Default it starts the server on address *http://localhost:9090/cook-book*
+By default it starts the server on address *http://localhost:9090/cook-book*
 
 The local Rest Server can be run from the rest-server project by simple executing the com.cookbook.tutorial.Main class.
 
-By Default is starts the server on address *http://localhost/9091*
+By default it starts the server on address *http://localhost/9091*
 ====

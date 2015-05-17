@@ -74,7 +74,7 @@ public class CookbookConnector {
     public void getRecentlyAddedSource(final SourceCallback callback) throws Exception {
 
         if (this.getConfig().getClient() != null) {
-            // Every 5 seconds our callback will be executed
+            // Every 10 seconds our callback will be executed
             this.getConfig().getClient().getRecentlyAdded(new ICookbookCallback() {
 
                 @Override
