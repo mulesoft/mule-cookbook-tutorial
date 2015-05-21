@@ -96,7 +96,7 @@ image::datasense/new-metadatacategory.png[width="600"]
 +
 [source,java,indent=0]
 ----
-include::{resourcesDir}/java/v5/DataSenseResolver.java[lines=28..36]
+include::{resourcesDir}/java/v5/DataSenseResolver.java[lines=28..37]
 ----
 +
 . Modify the method annotate with @MetaDataRetriever, to retrieve the description. Because we use a static model, we can just create a POJO model:
