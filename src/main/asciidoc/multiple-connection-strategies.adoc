@@ -42,10 +42,8 @@ See:
 
 * link:{resourcesDir}/java/v9/CookBookConnector.java[Connector] source code.
 
-* link:{resourcesDir}/java/v9/ConnectorConnectionStrategy.java[Base Config] source code.
+* link:{resourcesDir}/java/v9/ConnectorConfig.java[Base Config] source code.
 
-* link:{resourcesDir}/java/v9/ConnectionManagementStrategy.java[Connection Management Config] source code.
+* link:{resourcesDir}/java/v9/ConnectionManagementConfig.java[Connection Management Config] source code.
 
-* link:{resourcesDir}/java/v9/OAuthStrategy.java[OAuth2 Config] source code.
-
-//TODO Rename Strategy to config
+* link:{resourcesDir}/java/v9/OAuthConfig.java[OAuth2 Config] source code.

@@ -4,11 +4,11 @@ The Server can also provide the token using OAuth 2.0, instead of doing a login 
 
 In order to use OAuth in you connector you just need to annotate your strategy with the @OAuth2 annotation.
 
-If you only had the OAuth2 Strategy your strategy would look like:
+If you only had the OAuth2 Configuration your Config would look like:
 
 [source,java,linenums]
 ----
-include::{resourcesDir}/java/v9/OAuth2StandAloneStrategy.java[]
+include::{resourcesDir}/java/v9/OAuth2StandAloneConfig.java[]
 ----
 
 All our operations now need to be marked with the @OAuthProtected, even our @Source.
@@ -16,7 +16,7 @@ All our operations now need to be marked with the @OAuthProtected, even our @Sou
 In our Connector for example you will see:
 [source,java]
 ----
-include::{resourcesDir}/java/v9/CookBookConnector.java[lines="118..137"]
+include::{resourcesDir}/java/v9/CookBookConnector.java[lines="113..129"]
 ----
 
 Check link:{resourcesDir}/java/v9/CookBookConnector.java[full source] code.

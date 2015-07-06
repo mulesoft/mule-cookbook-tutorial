@@ -5,7 +5,7 @@
 
 Optional parameters or configurable ones are elements that are not required, and therefore, there is no need for users to specify a value.
 
-You can specify configurable fields inside an @Connector or connection strategies classes, or as parameters of @Processor methods inside a @Connector.
+You can specify configurable fields inside you Connector Configuration classes, or as parameters of @Processor methods inside a @Connector.
 
 [source,java]
 ----
@@ -22,6 +22,8 @@ import org.mule.api.annotations.param.Optional;
 @Optional
 private String  optionalField;
 //Getter and Setter of the field are required
+
+//Inside your @Connector
 
 /**
  * Optional parameter
@@ -50,6 +52,8 @@ import org.mule.api.annotations.param.Default;
 @Default("Hi")
 private String  greeting;
 //Getter and Setter of the field are required
+
+//Inside your @Connector
 
 /**
  * Default parameter

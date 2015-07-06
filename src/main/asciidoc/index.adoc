@@ -38,7 +38,6 @@ To build a basic connector for the {tutorial} service, we need to perform the fo
 +
 image::new-connector-1.png[width="500"]
 +
-+
 . Select the Connector Type you want to create. In this case, select SDK Based:
 +
 image::new0.png[width="500"]
@@ -161,6 +160,10 @@ In order to see how all the components are related, let's create a Hello World c
 . In Anypoint Studio, click *File* > *New* > *Anypoint Connector Project* or right-click your project name in Package Explorer and click *New* > *Anypoint Connector Project*:
 +
 image::new-connector-1.png[width="500"]
++
+. Select the Connector Type you want to create. In this case, select SDK Based:
++
+image::new0.png[width="500"]
 +
 . Specify the name of your connector and click *Finish*:
 +

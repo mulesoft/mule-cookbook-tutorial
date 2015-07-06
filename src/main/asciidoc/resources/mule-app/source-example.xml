@@ -8,9 +8,9 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 http://www.mulesoft.org/schema/mule/cookbook http://www.mulesoft.org/schema/mule/cookbook/current/mule-cookbook.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
-    <cookbook:config name="CookBook__Connection_Managament_type_strategy" username="admin" password="admin" doc:name="CookBook: Connection Managament type strategy"/>
+    <cookbook:config name="CookBook__Connection_Managament_Config" username="admin" password="admin" doc:name="CookBook: Connection Managament Config"/>
     <flow name="source-get-recently-added">
-        <cookbook:get-recently-added-source config-ref="CookBook__Connection_Managament_type_strategy" doc:name="CookBook (Streaming)"/>
+        <cookbook:get-recently-added-source config-ref="CookBook__Connection_Managament_Config" doc:name="CookBook (Streaming)"/>
         <logger message="#[payload]" level="INFO" doc:name="Logger"/>
     </flow>
 </mule>

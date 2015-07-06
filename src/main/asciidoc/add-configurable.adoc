@@ -3,7 +3,7 @@
 
 On the @Configuration ConnectorConfig add a <<configurable,configurable>> field for the address where the {tutorial} service is hosted:
 
-. Type *conf* at the editor of your connector or your connection strategy and use Ctrl+Space to display the templates.
+. Type *conf* at the editor of your connector config and use Ctrl+Space to display the templates.
 +
 image::config1.png[width="600"]
 +
