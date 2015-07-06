@@ -24,7 +24,7 @@ import com.cookbook.tutorial.service.InvalidCredentialsException;
  *
  * @author MuleSoft, Inc.
  */
-@ConnectionManagement(configElementName = "config-type", friendlyName = "Configuration type config")
+@ConnectionManagement(friendlyName = "Configuration")
 public class ConnectionManagementConfig extends ConnectorConfig {
 
     /**

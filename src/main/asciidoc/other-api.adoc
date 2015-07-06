@@ -102,24 +102,24 @@ Example GET request:
 ----
 ClientConfig clientConfig = new ClientConfig();
 Client client = ClientBuilder.newClient(clientConfig);
-WebTarget webTarget = client.target("http://example.com/rest");                     // # <1>
+WebTarget webTarget = client.target("http://example.com/rest"); // # <1>
 WebTarget resourceWebTarget = webTarget.path("resource");
-WebTarget helloworldWebTarget = resourceWebTarget.path("helloworld");               // # <2>
+WebTarget helloworldWebTarget = resourceWebTarget.path("helloworld"); // # <2>
 WebTarget helloworldWebTargetWithQueryParam =
-        helloworldWebTarget.queryParam("greeting", "Hi World!");                    // # <3>
+        helloworldWebTarget.queryParam("greeting", "Hi World!"); // # <3>
 
 Invocation.Builder invocationBuilder =
         helloworldWebTargetWithQueryParam.request(MediaType.APPLICATION_JSON_TYPE); // # <4>
 
-Response response = invocationBuilder.get();                                        // # <5>
+Response response = invocationBuilder.get(); // # <5>
 System.out.println(response.getStatus());
 System.out.println(response.readEntity(String.class));
 ----
-<1> - The client is ready to make a request to URL http://example.com/rest
-<2> - Add paths for http://example.com/rest/resource/helloworld
-<3> - Configure a query param. It looks like http://example.com/rest/resource/helloworld?greeting=Hi+World%21
-<4> - Specify we want the reply in JSON format
-<5> - Make a GET request
+<1> The client is ready to make a request to URL http://example.com/rest
+<2> Add paths for http://example.com/rest/resource/helloworld
+<3> Configure a query param. It looks like http://example.com/rest/resource/helloworld?greeting=Hi+World%21
+<4> Specify we want the reply in JSON format
+<5> Make a GET request
 
 
 For more information, see the https://jersey.java.net/documentation/latest/client.html[Jersey client] documentation.

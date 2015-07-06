@@ -13,7 +13,7 @@ import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.param.Optional;
 
-//Inside the @Connector class
+//Inside the Configuration class
 
 /**
  * Optional Field documentation
@@ -41,7 +41,7 @@ import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.param.Default;
 
-//Inside the @Connector class
+//Inside the Configuration class
 
 /**
  *  Field with Default

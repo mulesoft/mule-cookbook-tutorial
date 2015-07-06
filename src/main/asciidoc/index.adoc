@@ -38,6 +38,11 @@ To build a basic connector for the {tutorial} service, we need to perform the fo
 +
 image::new-connector-1.png[width="500"]
 +
++
+. Select the Connector Type you want to create. In this case, select SDK Based:
++
+image::new0.png[width="500"]
++
 . Specify the name of your connector and don't forget to uncheck the default generation before clicking *Finish*:
 +
 image:new1.png[width="550"]
@@ -191,7 +196,7 @@ image::split-2-high.png[caption="Figure 2: ", title="View configuration and XML"
 
 [NOTE]
 ====
-@ConnectionStrategy annotation is deprecated. Users instead should use @Config. On this views, consider the ConnectionStrategy as the ConnectorConfig
+@Config annotation is deprecated. Users instead should use @Config. On this views, consider the Config as the ConnectorConfig
 ====
 
 include::configurables.adoc[]

@@ -7,7 +7,7 @@ package org.mule.modules.cookbook;
 
 import java.util.List;
 
-import org.mule.api.annotations.ConnectionStrategy;
+import org.mule.api.annotations.Config;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.MetaDataScope;
 import org.mule.api.annotations.Processor;
@@ -36,14 +36,14 @@ import com.cookbook.tutorial.service.SessionExpiredException;
 @MetaDataScope(DataSenseResolver.class)
 public class CookbookConnector {
 
-    @ConnectionStrategy
+    @Config
     ConnectorConfig config;
 
     /**
      * Returns the list of recently added recipes
      *
      * {@sample.xml ../../../doc/cook-book-connector.xml.sample cook-book:getRecentlyAdded}
-     * 
+     *
      * @return A list of the recently added recipes
      */
     @Processor
@@ -61,7 +61,7 @@ public class CookbookConnector {
      * @param entity
      *            Ingredient to be created
      * @return return Ingredient with Id from the system.
-     * 
+     *
      * @throws InvalidTokenException
      * @throws SessionExpiredException
      * @throws InvalidEntityException
@@ -78,13 +78,13 @@ public class CookbookConnector {
      * Description for update
      *
      * {@sample.xml ../../../doc/cook-book-connector.xml.sample cook-book:update}
-     * 
+     *
      * @param type
      *            Object Type
      * @param entity
      *            Ingredient to be updated
      * @return return Ingredient with Id from the system.
-     * 
+     *
      * @throws SessionExpiredException
      * @throws InvalidEntityException
      * @throws NoSuchEntityException
@@ -107,7 +107,7 @@ public class CookbookConnector {
      * @param id
      *            Id of the entity to retrieve
      * @return return Ingredient with Id from the system.
-     * 
+     *
      * @throws SessionExpiredException
      * @throws InvalidEntityException
      * @throws NoSuchEntityException
@@ -128,7 +128,7 @@ public class CookbookConnector {
      * @param id
      *            Id of the entity to retrieve
      * @return return Ingredient with Id from the system.
-     * 
+     *
      * @throws SessionExpiredException
      * @throws NoSuchEntityException
      */

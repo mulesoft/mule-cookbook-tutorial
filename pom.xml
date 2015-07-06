@@ -62,7 +62,7 @@
                                 <linkcss>false</linkcss>
                                 <icons>font</icons>
                                 <docinfo1/>
-                                <stylesheet>${basedir}/src/main/asciidoc/css/mule.css</stylesheet>
+                                <stylesheet>${basedir}/src/main/asciidoc/css/style.css</stylesheet>
                             </attributes>
                         </configuration>
                     </execution>

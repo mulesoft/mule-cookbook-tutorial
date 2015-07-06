@@ -14,7 +14,7 @@ import org.mule.api.annotations.param.Default;
  *
  * @author MuleSoft, Inc.
  */
-@Configuration(configElementName = "config-type", friendlyName = "Configuration type config")
+@Configuration(friendlyName = "Configuration")
 public class ConnectorConfig {
 
 	/**

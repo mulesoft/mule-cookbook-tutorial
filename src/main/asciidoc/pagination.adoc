@@ -9,9 +9,9 @@ You need to do 3 things in order to have a paginated operation:
 ----
 include::{resourcesDir}/java/v8/CookbookConnector.java[lines=209..216]
 ----
-<1> - Annotated your processor with @Paged.
-<2> - Return a ProviderAwarePagingDelegate
-<3> - Receive as one of your parameters a PagingConfiguration
+<1> Annotated your processor with @Paged.
+<2> Return a ProviderAwarePagingDelegate
+<3> Receive as one of your parameters a PagingConfiguration
 
 --
 When implementing your ProviderAwarePagingDelegate you need to specify two elements:
