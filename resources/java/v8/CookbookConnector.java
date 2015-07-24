@@ -8,7 +8,7 @@ package org.mule.modules.cookbook;
 import java.util.List;
 import java.util.Map;
 
-import org.mule.api.annotations.ConnectionStrategy;
+import org.mule.api.annotations.Config;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.MetaDataScope;
 import org.mule.api.annotations.Paged;
@@ -49,7 +49,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @MetaDataScope(DataSenseResolver.class)
 public class CookbookConnector {
 
-    @ConnectionStrategy
+    @Config
     ConnectorConfig config;
 
     /**
@@ -208,9 +208,9 @@ public class CookbookConnector {
      */
     @Processor
     @ReconnectOn(exceptions = { SessionExpiredException.class })
-    @Paged                                                                                       // <1>
-    public ProviderAwarePagingDelegate<Map<String, Object>, CookbookConnector> queryPaginated(   // <2>
-            final String query, final PagingConfiguration pagingConfiguration)                   // <3>
+    @Paged //<1>
+    public ProviderAwarePagingDelegate<Map<String, Object>, CookbookConnector> queryPaginated( //<2>
+            final String query, final PagingConfiguration pagingConfiguration) //<3>
             throws SessionExpiredException {
         return new CookbookPagingDelegate(query, pagingConfiguration.getFetchSize());
     }

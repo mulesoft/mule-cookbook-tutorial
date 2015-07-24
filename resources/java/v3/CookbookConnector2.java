@@ -7,7 +7,7 @@ package org.mule.modules.cookbook;
 
 import java.util.List;
 
-import org.mule.api.annotations.ConnectionStrategy;
+import org.mule.api.annotations.Config;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.ReconnectOn;
@@ -29,7 +29,7 @@ import com.cookbook.tutorial.service.SessionExpiredException;
 @Connector(name = "cookbook", friendlyName = "Cookbook")
 public class CookbookConnector {
 
-    @ConnectionStrategy
+    @Config
     ConnectorConfig config;
 
     /**

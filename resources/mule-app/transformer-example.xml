@@ -8,14 +8,14 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/cookbook http://www.mulesoft.org/schema/mule/cookbook/current/mule-cookbook.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
-    <cookbook:config-type name="CookBook__Connection_Managament_type_strategy" username="admin" password="admin" doc:name="CookBook: Connection Managament type strategy">
+    <cookbook:config name="CookBook__Connection_Managament_Config" username="admin" password="admin" doc:name="CookBook: Connection Managament Config">
         <reconnect/>
-    </cookbook:config-type>
+    </cookbook:config>
     <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
 
     <flow name="mule-appFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/transform" doc:name="HTTP"/>
-        <cookbook:get-recently-added config-ref="CookBook__Connection_Managament_type_strategy" doc:name="CookBook"/>
+        <cookbook:get-recently-added config-ref="CookBook__Connection_Managament_Config" doc:name="CookBook"/>
         <cookbook:recipes-to-maps doc:name="CookBook"/>
         <json:object-to-json-transformer doc:name="Object to JSON"/>
     </flow>
