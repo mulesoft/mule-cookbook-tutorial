@@ -110,7 +110,3 @@ include::{resourcesDir}/mule-app/transformer2-example.xml[]
 ++++
 +
 . Run the example and see that the flow will execute successfully.
-
-See:
-
-* http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_transformers[Testing your Transformer].

@@ -175,7 +175,7 @@ image::datasense/datasense-ui.png[width="900"]
 +
 image::datasense/datasense-map.png[width="900"]
 
-To see how to test DataSense check our http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_datasense_dynamic_metadata[Testing Dynamic DataSense] guide.
+To see how to test DataSense check our http://mulesoft.github.io/connector-certification-docs/advanced/index.html#_testing_metadata[Testing DataSense] guide.
 
 // TODO
 // === Adding @Query

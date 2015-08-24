@@ -58,7 +58,3 @@ include::{resourcesDir}/mule-app/source-example.xml[]
     </div>
 </div>
 ++++
-
-See:
-
-* http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_testing_inbound_endpoints_sources[Testing Inbound Endpoints(@Source)].
