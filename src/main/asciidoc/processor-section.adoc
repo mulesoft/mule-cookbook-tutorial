@@ -57,8 +57,6 @@ include::using-my-connector.adoc[]
 
 If you want to know how to create tests for your connector check:
 
-* Adding http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#functional_tests_automation[Functional Tests Automation].
-
-* http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_generating_functional_tests[Generating Functional Tests].
+* http://mulesoft.github.io/connector-certification-docs/advanced/index.html#_functional_tests_automation[Tests Automation] documentation.
 
 * The full http://www.mulesoft.org/documentation/display/current/Developing+DevKit+Connector+Tests[testing documentation].
