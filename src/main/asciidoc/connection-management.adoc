@@ -87,6 +87,6 @@ include::{resourcesDir}/mule-app/mule-app-connection-management.xml[]
 
 See:
 
-* http://mulesoft.github.io/connector-certification-docs/current/user-manual.html#_test_connection[Testing Connection].
+* Check the http://mulesoft.github.io/connector-certification-docs/advanced/index.html#_system_tests[Systems Tests] and look for *Test Connectivity* section.
 
 * http://www.mulesoft.org/documentation/display/current/Authentication[DevKit Authentication] documentation.
