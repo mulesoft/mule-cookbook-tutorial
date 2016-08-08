@@ -40,7 +40,7 @@ class OAuthConfig {
 
 See:
 
-* link:{resourcesDir}/java/v9/CookBookConnector.java[Connector] source code.
+* link:{resourcesDir}/java/v9/CookbookConnector.java[Connector] source code.
 
 * link:{resourcesDir}/java/v9/ConnectorConfig.java[Base Config] source code.
 
